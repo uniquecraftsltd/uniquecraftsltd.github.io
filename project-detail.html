@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title id="page-title">Project Details</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet"> <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="page-header">
+            <div class="container">
+                <h2 id="project-title">Loading...</h2>
+                <a href="portfolio.html">Back to Projects</a>
+            </div>
+        </div>
+
+        <div class="portfolio" style="padding: 60px 0;">
+            <div class="container">
+                <div class="row mb-5">
+                    <div class="col-12">
+                        <h3 id="desc-title">Project Overview</h3>
+                        <p id="project-description">Loading description...</p>
+                    </div>
+                </div>
+
+                <div id="gallery-grid" class="row">
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="lib/lightbox/js/lightbox.min.js"></script>
+    <script>
+        async function loadProject() {
+            const params = new URLSearchParams(window.location.search);
+            const projectId = params.get('id');
+
+            const response = await fetch('img/projects/global_manifest.json');
+            const projects = await response.json();
+            const project = projects.find(p => p.id === projectId);
+
+            if (project) {
+                document.getElementById('page-title').innerText = project.title;
+                document.getElementById('project-title').innerText = project.title;
+                document.getElementById('project-description').innerText = project.description || "No description provided.";
+
+                const grid = document.getElementById('gallery-grid');
+                project.gallery.forEach(img => {
+                    grid.innerHTML += `
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <a href="${img}" data-lightbox="project-gallery">
+                                <img src="${img}" class="img-fluid" style="height: 300px; object-fit: cover;">
+                            </a>
+                        </div>`;
+                });
+            }
+        }
+        loadProject();
+    </script>
+</body>
+</html>

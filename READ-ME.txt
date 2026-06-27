@@ -1,0 +1,77 @@
+  =>  Template Name    : Builderz - Construction Company Website Template
+
+  =>  Template Link    : https://htmlcodex.com/construction-company-website-template
+
+  =>  Template License : https://htmlcodex.com/license (or read the LICENSE.txt file)
+
+  =>  Template Author  : HTML Codex
+
+  =>  Author Website   : https://htmlcodex.com
+
+  =>  About HTML Codex : HTML Codex is one of the top creators and publishers of Free HTML templates, HTML landing pages, HTML email templates and HTML snippets in the world. Read more at ( https://htmlcodex.com/about-us )
+
+
+  <<<<<<<<<<<<<<<<--------------------------->>>>>>>>>>>>>>>>>>
+
+  # SAPE (Smart Asset Pipeline Engine)
+
+SAPE is a production-grade **Digital Asset Management (DAM) Core** designed to automate the lifecycle of media assets from raw capture to web-ready deployment. It transforms unstructured photo directories into a versioned, queryable, and synchronized asset repository.
+
+## 🏗 System Architecture
+SAPE follows a modular **Pipeline-Registry-Manifest** architecture, decoupling file storage from metadata management.
+
+- **Ingestion Layer**: Recursive scanning with file-type filtering.
+- **Persistence Layer**: SQLite-backed relational registry for metadata and audit trails.
+- **Reconciliation Engine**: Atomic synchronization between source (RAW) and destination (WEB) using hashing to detect drift.
+- **Manifest Layer**: Automated generation of `global_manifest.json` for decoupled frontend consumption.
+
+
+
+## 🚀 Key Technical Features
+- **Atomic Reconciliation**: Prevents partial synchronization errors using transactional staging.
+- **Content-Addressing**: MD5-based deduplication ensures storage efficiency.
+- **Many-to-Many Tagging**: Relational schema allows complex asset filtering by project, category, and tags.
+- **Version Tracking**: Immutable audit trail for all asset changes.
+- **CLI Interface**: Standardized CLI for pipeline operations (sync, tag, restore).
+
+## 🛠 Tech Stack
+- **Core**: Python 3.x
+- **Metadata Storage**: SQLite (ACID compliant)
+- **Deployment Interface**: CLI (argparse)
+- **Frontend Bridge**: JSON Manifest (decoupled from backend logic)
+
+## 📦 Usage
+
+### Synchronize Assets
+```bash
+python scripts/asset_engine.py sync
+------------------------------------------
+
+# Unique Crafts Engineering - Asset Pipeline
+
+## 🏗 System Architecture
+This project utilizes **SAPE (Smart Asset Pipeline Engine)**, a custom-built DAM core that automates media lifecycle management.
+
+### Key Components:
+1. **Ingestion Engine**: Python-based automation that scans `raw_photos/`, handles file normalization, and mirrors the directory structure to `img/projects/`.
+2. **Metadata Registry**: SQLite-backed relational storage for project tagging and audit trails.
+3. **Decoupled Manifest**: Automatic generation of `global_manifest.json` for frontend consumption.
+4. **Dynamic Frontend**: Isotope-based UI that dynamically injects assets without manual HTML updates.
+
+## 🚀 How to maintain the Portfolio
+- **Add New Project**: Simply drop the folder into `raw_photos/`.
+- **Sync**: Run `python scripts/asset_engine.py sync`.
+- **Result**: The website gallery updates automatically on next refresh.
+
+
+## 🚀 SAPE: Smart Asset Pipeline Engine
+
+سیستمِ مدیریتِ هوشمندِ تصاویر برای وب‌سایتِ Unique Crafts.
+
+### ⚙️ جریان کاری (Workflow)
+برای انتقالِ تصاویر از دسکتاپ به وب‌سایت، این مراحل را دنبال کنید:
+
+1. **مدیریت فایل‌ها:** فایل‌هایِ جدیدِ خود را در پوشه‌ی `~/Desktop/Nex_space` قرار دهید (فولدر‌بندیِ پروژه‌ها در اینجا انجام می‌شود).
+2. **انتقال به پروژه (Ingest):** برای انتقالِ فایل‌هایِ جدید به محیطِ کاری، در ترمینال دستور زیر را اجرا کنید:
+   ```bash
+   python3 scripts/ingest.py
